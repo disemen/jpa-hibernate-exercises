@@ -1,14 +1,13 @@
 package com.bobocode.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * todo:
  * - implement no arguments constructor
  * - implement getters and setters for all fields
  * - implement equals() and hashCode() based on {@link Book#isbn}
@@ -26,9 +25,23 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(of = "isbn")
+@Entity
+@Table(name = "book")
 public class Book {
+
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "isbn", nullable = false, unique = true)
+    @NaturalId
     private String isbn;
-    private Set<Author> authors;
+
+    @Setter(AccessLevel.PRIVATE)
+    @ManyToMany(mappedBy = "books")
+    private Set<Author> authors = new HashSet<>();
 }

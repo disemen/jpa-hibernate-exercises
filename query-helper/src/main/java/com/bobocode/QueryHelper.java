@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.Collection;
+import javax.persistence.EntityTransaction;
 import java.util.function.Function;
 
 /**
@@ -31,6 +31,20 @@ public class QueryHelper {
      * @return query result specified by type T
      */
     public <T> T readWithinTx(Function<EntityManager, T> entityManagerConsumer) {
-        throw new UnsupportedOperationException("I'm waiting for you to do your job and make me work ;)"); // todo:
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.unwrap(Session.class).setDefaultReadOnly(true);
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        T result;
+        try {
+            result = entityManagerConsumer.apply(entityManager);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            throw new QueryHelperException("Error performing query. Transaction is rolled back", e);
+        } finally {
+            entityManager.close();
+        }
+        return result;
     }
 }

@@ -21,7 +21,7 @@ You're supposed to be familiar with *JPA* mapping strategies and *Hibernate ORM*
  
 ### Related materials :information_source:
  * [JPA and Hibernate basics tutorial](https://github.com/boy4uck/jpa-hibernate-tutorial/tree/master/jpa-hibernate-basics) <img src="https://raw.githubusercontent.com/bobocode-projects/resources/master/image/logo_transparent_background.png" height=20/>
- * [Derived identifiers](http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#identifiers-derived)<img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Hibernate_logo_a.png" height=15/>
+ * [Derived identifiers](http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#identifiers-derived) <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Hibernate_logo_a.png" height=15/>
  * [The best way to map a @OneToOne relationship with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/)
  
 
